@@ -35,7 +35,10 @@ public class ArmSystem extends Subsystem {
         public void armStop() {
         arm.set(ControlMode.PercentOutput, 0);
     }
-            
+        public void ArmMoveForEncoderCounts(boolean armBackwards){
+
+        }
+
         public void ForwardForTime(int armTime){
         arm.set(ControlMode.PercentOutput, 1);
 
