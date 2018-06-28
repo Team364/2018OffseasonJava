@@ -12,8 +12,6 @@ public class RobotMap {
 
     // First stage elevator objects
     public static final int arm = 3;
-	public static final int armEncoderA = 0;
-	public static final int armEncoderB = 1;
 
     // Intake objects
     public static final int intakeLeft = 1;

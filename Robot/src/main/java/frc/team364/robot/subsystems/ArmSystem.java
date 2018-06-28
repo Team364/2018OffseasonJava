@@ -16,10 +16,6 @@ public class ArmSystem extends Subsystem {
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
 		pidArm = new PIDCalc(0.1, 0, 0, "Arm");
-		armEncoder = new Encoder(RobotMap.armEncoderA,
-								RobotMap.armEncoderB,
-								true, 
-								Encoder.EncodingType.k4X);
     }
 
     
@@ -40,7 +36,7 @@ public class ArmSystem extends Subsystem {
     }
 
     public int getArmEncoderPosition() {
-        return armEncoder.get();
+        return arm..getSelectedSensorPosition(0);
     }
 
     public void armStop() {
