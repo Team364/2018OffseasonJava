@@ -36,7 +36,7 @@ public class ArmSystem extends Subsystem {
     }
 
     public int getArmEncoderPosition() {
-        return arm..getSelectedSensorPosition(0);
+        return arm.getSelectedSensorPosition(0);
     }
 
     public void armStop() {
