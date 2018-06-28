@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
         camera.setResolution(640, 480);
         driveSystem.resetEncoders();
         driveSystem.resetHeading();
+		armSystem.resetEncoder(); // ONLY RESET ARM ENCODER HERE!
     }
 
     @Override

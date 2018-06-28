@@ -9,19 +9,17 @@ public class TeleopArmCommand extends Command {
         requires(Robot.armSystem);
     }
 
-
-     @Override
+	// TODO: Implement position control and state controller.
+    @Override
     protected void execute() {
-            if(Robot.oi.operationStation.getRawAxis(1) < -0.5) {
-                Robot.armSystem.forward();
-            } else if(Robot.oi.operationStation.getRawAxis(1) > 0.5) {
-                Robot.armSystem.backward();
-            } else {
-                Robot.armSystem.armStop();
-            }
-    
-
-            }//end of execute
+        if(Robot.oi.operationStation.getRawAxis(1) < -0.5) {
+            Robot.armSystem.forward();
+        } else if(Robot.oi.operationStation.getRawAxis(1) > 0.5) {
+            Robot.armSystem.backward();
+        } else {
+            Robot.armSystem.armStop();
+        }
+    }
         
     @Override
     protected boolean isFinished() {

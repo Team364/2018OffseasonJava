@@ -3,32 +3,23 @@ package frc.team364.robot.commands.auto.arm;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team364.robot.Robot;
 
-public class ArmMoveForEncoderCounts extends Command {
+public class ArmMoveToPosition extends Command {
 
-private boolean backwards;
+	private int counts; // <--
 
-
-    public ArmMoveForEncoderCounts(int armCounts, boolean armBackwards) {
+    public ArmMoveToPosition(int armCounts) {
         requires(Robot.armSystem);
-        backwards = armBackwards;
-        armCounts = armCounts
-        setTimeout(5);
-
+        counts = armCounts; // -->
+        setTimeout(5); // Could maybe reduce this timeout a little.
     }
-    /*    public void driveStraightToEncoderCounts(int counts, boolean backwards) {
-        if(backwards) {
-            pidOutputArm = pidArm.calculateOutput(counts, -getLeftEncoderPosition());
-        } else {
-            pidOutputLeft = pidArm.calculateOutput(counts, getLeftEncoderPosition());
-        }
-    }*/
+
     @Override protected void initialize(){
-        Robot.armSystem.resetEncoders();
+		// No resetting needed here.
     }
     
     @Override
     protected void execute() {
-        Robot.armSystem.ArmMoveForEncoderCounts(armBackwards);
+        Robot.armSystem.moveArmToPositioin(counts); // This is the only line of code you need.
     }
 
     @Override
