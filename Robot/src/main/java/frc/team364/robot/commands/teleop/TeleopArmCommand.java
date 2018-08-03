@@ -5,6 +5,9 @@ import frc.team364.robot.Robot;
 
 public class TeleopArmCommand extends Command {
 
+    public double armScalePosition = 2;
+    public double armSwitchPosition = 1;
+
     public TeleopArmCommand() {
         requires(Robot.armSystem);
     }
@@ -12,12 +15,18 @@ public class TeleopArmCommand extends Command {
 	// TODO: Implement position control and state controller.
     @Override
     protected void execute() {
-        if(Robot.oi.operationStation.getRawAxis(1) < -0.5) {
+        if(Robot.oi.controller.getPOV() == 0) {
             Robot.armSystem.forward();
-        } else if(Robot.oi.operationStation.getRawAxis(1) > 0.5) {
+        } else if(Robot.oi.controller.getPOV() == 180) {
             Robot.armSystem.backward();
         } else {
             Robot.armSystem.armStop();
+        }
+        if(Robot.oi.controller.armScaleButton.get()){
+            Robot.armSystem.moveArmToPosition(armScalePosition);
+        }
+        else if(Robot.oi.controller.armSwitchButton.get()){
+            Robot.armSystem.moveArmToPosition(armSwitchPosition);
         }
     }
         

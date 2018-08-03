@@ -5,17 +5,19 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team364.robot.RobotMap;
 import frc.team364.robot.commands.teleop.TeleopArmCommand;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 public class ArmSystem extends Subsystem {
 
     private TalonSRX arm;
-	private Encoder armEncoder;
 	private PIDCalc pidArm;
 	private double pidArmOutput;
+    private AnalogInput pot;
 
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
 		pidArm = new PIDCalc(0.1, 0, 0, "Arm");
+        pot = new AnalogInput(0);
     }
 
     
@@ -45,9 +47,13 @@ public class ArmSystem extends Subsystem {
 
 	// This should be all you need to set the position you want.
 	// You may want to do some math to find out the counts per degree.
-	public void moveArmToPosition(int counts){
-		pidArmOutput = pidArm.calculateOutput(counts, getArmEncoderPosition());
+	public void moveArmToPosition(double voltage){
+		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
 		arm.set(ControlMode.PercentOutput, pidArmOutput);
+    }
+
+      public double getPotVoltage(){
+        return  pot.getVoltage();
     }
 
 	/* Lets take this stuff out for now.

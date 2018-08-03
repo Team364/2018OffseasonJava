@@ -7,7 +7,7 @@ public class OI {
 
     public Joystick leftStick;
     public Joystick rightStick;
-    public Joystick operationStation;
+    public Joystick controller;
 
     public double leftPower;
     public double rightPower;
@@ -15,11 +15,12 @@ public class OI {
     public JoystickButton shiftLow;
     public JoystickButton shiftHigh;
 
-    public JoystickButton clawButton;
     public JoystickButton pinchButton;
     public JoystickButton intakeButton;
     public JoystickButton outtakeButton;
     public JoystickButton armButton;
+    public JoystickButton armSetSwitch;
+    public JoystickButton armSetScale;
 
     public JoystickButton autoSelectorButton;
 
@@ -27,16 +28,15 @@ public class OI {
 
         leftStick = new Joystick(0);
         rightStick = new Joystick(1);
-        operationStation = new Joystick(2);
+        controller = new Joystick(2);
 
         shiftLow = new JoystickButton(leftStick, 1);
         shiftHigh = new JoystickButton(rightStick, 1);
 
-        clawButton = new JoystickButton(operationStation, 6);
-        pinchButton = new JoystickButton(operationStation, 3);
-        intakeButton = new JoystickButton(operationStation, 1);
-        outtakeButton = new JoystickButton(operationStation, 2);
+        pinchButton = new JoystickButton(controller, 5);
+        armSwitchButton = new JoystickButton(controller, 1);
+        armScaleButton = new JoystickButton(controller, 2);
 
-        autoSelectorButton = new JoystickButton(operationStation, 10);
+        autoSelectorButton = new JoystickButton(controller, 10);
     }
 }

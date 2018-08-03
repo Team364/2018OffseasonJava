@@ -13,15 +13,11 @@ import frc.team364.robot.Robot;
 public class TeleopClawCommand extends Command {
 
     // Variables for claw toggle
-    private int clawState;
-    private boolean clawLatch;
     private int pincherState;
     private boolean pincherLatch;
 
     public TeleopClawCommand() {
         requires(Robot.clawSystem);
-        clawState = 0;
-        clawLatch = false;
         pincherState = 0;
         pincherLatch = false;
     }
@@ -33,24 +29,6 @@ public class TeleopClawCommand extends Command {
         // set the mechanism to a certain state on the first loop when the
         // button is pressed. Each loop afterwards will turn the solenoid off
         // and wait until the button is depressed.
-        if(Robot.oi.clawButton.get()) {
-            if(!clawLatch) {
-                if(clawState == 0) {
-                    Robot.clawSystem.flipClawUp();
-                    clawState = 1;
-                    clawLatch = true;
-                } else {
-                    Robot.clawSystem.flipClawDown();
-                    clawState = 0;
-                    clawLatch = true;
-                }
-            } else {
-                Robot.clawSystem.clawOff();
-            }
-        } else {
-            Robot.clawSystem.clawOff();
-            clawLatch = false;
-        }
 
         if(Robot.oi.pinchButton.get()) {
             if(!pincherLatch) {
@@ -63,8 +41,7 @@ public class TeleopClawCommand extends Command {
                     pincherLatch = true;
                     pincherState = 0;
                 }
-            } else {
-                Robot.clawSystem.clawOff();
+
             }
         } else {
             Robot.clawSystem.pincherOff();
@@ -80,7 +57,6 @@ public class TeleopClawCommand extends Command {
 
     @Override
     protected void end() {
-        Robot.clawSystem.clawOff();
         Robot.clawSystem.pincherOff();
     }
 
