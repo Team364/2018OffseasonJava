@@ -17,9 +17,7 @@ public class RobotMap {
     public static final int intakeLeft = 4;
     public static final int intakeRight = 5;
 
-    // Intake/Claw objects
-    public static final int clawPistonPort1 = 1;
-    public static final int clawPistonPort2 = 6;
+    //Pinch objects
     public static final int pinchPistonPort1 = 2;
     public static final int pinchPistonPort2 = 5;
 
