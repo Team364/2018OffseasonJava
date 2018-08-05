@@ -3,6 +3,7 @@ package frc.team364.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team364.robot.Robot;
 import frc.team364.robot.RobotMap;
 import frc.team364.robot.commands.teleop.TeleopIntakeCommand;
 
@@ -29,6 +30,13 @@ public class IntakeSystem extends Subsystem {
         leftIntake.set(ControlMode.PercentOutput, -1);
         rightIntake.set(ControlMode.PercentOutput, -1);
     }
+  
+    public void outtakeForPressure(){
+
+        leftIntake.set(ControlMode.PercentOutput, -Robot.oi.controller.getRawAxis(3));
+        rightIntake.set(ControlMode.PercentOutput, -Robot.oi.controller.getRawAxis(3));
+    }
+
 
     public void intakeStop() {
         leftIntake.set(ControlMode.PercentOutput, 0);

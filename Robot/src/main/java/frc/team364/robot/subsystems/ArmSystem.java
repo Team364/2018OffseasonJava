@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team364.robot.RobotMap;
+import frc.team364.robot.PIDCalc;
 import frc.team364.robot.commands.teleop.TeleopArmCommand;
 import edu.wpi.first.wpilibj.AnalogInput;
 
@@ -16,7 +17,7 @@ public class ArmSystem extends Subsystem {
 
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
-		pidArm = new PIDCalc(0.1, 0, 0, "Arm");
+		pidArm = new PIDCalc(0.1, 0, 0, 0, "Arm");
         pot = new AnalogInput(0);
     }
 
@@ -24,10 +25,6 @@ public class ArmSystem extends Subsystem {
     protected void initDefaultCommand() {
         setDefaultCommand(new TeleopArmCommand());
     }
-	
-	public void resetEncoder() {
-		arm.reset();
-	}
 
     public void forward() {
         arm.set(ControlMode.PercentOutput, 1);
@@ -55,6 +52,7 @@ public class ArmSystem extends Subsystem {
       public double getPotVoltage(){
         return  pot.getVoltage();
     }
+
 
 	/* Lets take this stuff out for now.
 	public void ForwardForTime(int armTime){

@@ -5,11 +5,11 @@ import frc.team364.robot.Robot;
 
 public class ArmMoveToPosition extends Command {
 
-	private int counts; // <--
+	private int voltage; // <--
 
-    public ArmMoveToPosition(int armCounts) {
+    public ArmMoveToPosition(int armVoltage) {
         requires(Robot.armSystem);
-        counts = armCounts; // -->
+        voltage = armVoltage; // -->
         setTimeout(5); // Could maybe reduce this timeout a little.
     }
 
@@ -19,7 +19,7 @@ public class ArmMoveToPosition extends Command {
     
     @Override
     protected void execute() {
-        Robot.armSystem.moveArmToPositioin(counts); // This is the only line of code you need.
+        Robot.armSystem.moveArmToPosition(voltage); // This is the only line of code you need.
     }
 
     @Override

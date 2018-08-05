@@ -45,7 +45,6 @@ public class Robot extends TimedRobot {
         camera.setResolution(640, 480);
         driveSystem.resetEncoders();
         driveSystem.resetHeading();
-		armSystem.resetEncoder(); // ONLY RESET ARM ENCODER HERE!
     }
 
     @Override
@@ -110,7 +109,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Gyro Angle", driveSystem.getGyroAngle());
         SmartDashboard.putNumber("Left Encoder Counts", driveSystem.getLeftEncoderPosition());
         SmartDashboard.putNumber("Right Encoder Counts", driveSystem.getRightEncoderPosition());
-        SmartDashboard.putNumber("Pot Voltage", clawSystem.getPotVoltage());
+        SmartDashboard.putNumber("Pot Voltage", armSystem.getPotVoltage());
         //SmartDashboard.putString("Current auto", gameData.charAt(0));
     }
 }

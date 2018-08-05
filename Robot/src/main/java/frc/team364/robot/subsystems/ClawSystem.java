@@ -11,7 +11,6 @@ public class ClawSystem extends Subsystem {
 
     public ClawSystem() {
         pincher = new DoubleSolenoid(RobotMap.pinchPistonPort1, RobotMap.pinchPistonPort2);
-        claw = new DoubleSolenoid(RobotMap.clawPistonPort1, RobotMap.clawPistonPort2);
     }
 
     protected void initDefaultCommand() {

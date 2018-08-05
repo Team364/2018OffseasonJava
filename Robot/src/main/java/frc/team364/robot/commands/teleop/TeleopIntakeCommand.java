@@ -10,6 +10,8 @@ package frc.team364.robot.commands.teleop;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team364.robot.Robot;
 
+
+
 public class TeleopIntakeCommand extends Command {
 
     public TeleopIntakeCommand() {
@@ -34,7 +36,7 @@ public class TeleopIntakeCommand extends Command {
     }
 
 
-    }
+    
 
     @Override
     protected boolean isFinished() {
@@ -45,5 +47,6 @@ public class TeleopIntakeCommand extends Command {
     protected void end() {
         Robot.intakeSystem.intakeStop();
     }
+
 
 }

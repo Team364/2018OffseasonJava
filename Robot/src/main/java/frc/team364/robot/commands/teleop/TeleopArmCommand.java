@@ -5,9 +5,6 @@ import frc.team364.robot.Robot;
 
 public class TeleopArmCommand extends Command {
 
-    public double armScalePosition = 2;
-    public double armSwitchPosition = 1;
-
     public TeleopArmCommand() {
         requires(Robot.armSystem);
     }
@@ -21,12 +18,6 @@ public class TeleopArmCommand extends Command {
             Robot.armSystem.backward();
         } else {
             Robot.armSystem.armStop();
-        }
-        if(Robot.oi.controller.armScaleButton.get()){
-            Robot.armSystem.moveArmToPosition(armScalePosition);
-        }
-        else if(Robot.oi.controller.armSwitchButton.get()){
-            Robot.armSystem.moveArmToPosition(armSwitchPosition);
         }
     }
         
