@@ -9,7 +9,6 @@ public class TeleopArmCommand extends Command {
         requires(Robot.armSystem);
     }
 
-	// TODO: Implement position control and state controller.
     @Override
     protected void execute() {
         if(Robot.oi.controller.getPOV() == 0) {

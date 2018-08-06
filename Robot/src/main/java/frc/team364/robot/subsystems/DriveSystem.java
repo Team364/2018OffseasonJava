@@ -42,15 +42,7 @@ public class DriveSystem extends Subsystem {
     public double pidOutputRight;
     public Pathfinder pathfinder;
 
-    /**
-     * DriveSystem()
-     * Constructor for the DriveSystem class
-     * Maps all TalonSRX's and configures settings
-     * Maps all pistons
-     * Creates PID objects
-     * Initializes navX
-     * Initializes Pathfinder class
-     */ 
+
     public DriveSystem() {
         
         // Initialize TalonSRX objects
@@ -130,24 +122,6 @@ public class DriveSystem extends Subsystem {
      */ 
     public double getGyroAngle() {
         return navX.getYaw();
-    }
-
-    /**
-     * setLeftDrivePower()
-     * Use this for motion profiling to set the left drive power
-     * @param power sets the left drive power
-     */ 
-    public void setLeftDrivePower(double power) {
-        leftRear.set(ControlMode.PercentOutput, power);
-    }
-
-    /**
-     * setRightDrivePower()
-     * Use this for motion profiling to set the right drive power
-     * @param power sets the right drive power
-     */ 
-    public void setRightDrivePower(double power) {
-        rightRear.set(ControlMode.PercentOutput, power);
     }
 
     /**
