@@ -181,6 +181,7 @@ public class DriveSystem extends Subsystem {
      * @param heading heading to turn to
      */ 
     public void turnToHeading(double heading) {
+        //Remove dampening on the pidOutputNavX to increase turn speed
         //Possibly add navX.zeroYaw(); to see if that corrects error
         pidOutputNavX = pidNavX.calculateOutput(heading, navX.getYaw());
         leftRear.set(ControlMode.PercentOutput, pidOutputNavX * 0.6);
