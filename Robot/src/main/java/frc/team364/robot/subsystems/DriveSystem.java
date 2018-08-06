@@ -16,10 +16,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team364.robot.PIDCalc;
 import frc.team364.robot.RobotMap;
 import frc.team364.robot.commands.teleop.TeleopDriveCommand;
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Waypoint;
-import jaci.pathfinder.modifiers.TankModifier;
 
 
 /**
@@ -227,7 +223,10 @@ public class DriveSystem extends Subsystem {
     public void noShiftInput() {
         shifter.set(DoubleSolenoid.Value.kOff);
     }
-
+    /** 
+     * resetEncoders()
+     * This resets the encoders on the Talons to zero
+    */
     public void resetEncoders() {
         leftRear.setSelectedSensorPosition(0, 0, 0);
         rightRear.setSelectedSensorPosition(0, 0, 0);
