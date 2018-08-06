@@ -11,8 +11,10 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void execute() {
+        //If up on the directional pad is pressed then the arm will move forward
         if(Robot.oi.controller.getPOV() == 0) {
             Robot.armSystem.forward();
+        //If down on the directional pad is pressed then the arm will move backwards
         } else if(Robot.oi.controller.getPOV() == 180) {
             Robot.armSystem.backward();
         } else {
