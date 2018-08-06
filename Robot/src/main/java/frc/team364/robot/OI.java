@@ -19,6 +19,8 @@ public class OI {
     public JoystickButton intakeButton;
     public JoystickButton outtakeButton;
     public JoystickButton armButton;
+    public JoystickButton switchButton;
+    public JoystickButton scaleButton;
 
     public JoystickButton autoSelectorButton;
 
@@ -32,6 +34,8 @@ public class OI {
         shiftHigh = new JoystickButton(rightStick, 1);
 
         pinchButton = new JoystickButton(controller, 5);
+        switchButton = new JoystickButton(controller, 1);
+        scaleButton = new JoystickButton(controller, 2);
 
         autoSelectorButton = new JoystickButton(controller, 10);
     }
