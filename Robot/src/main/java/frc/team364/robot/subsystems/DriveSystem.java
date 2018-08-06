@@ -193,6 +193,8 @@ public class DriveSystem extends Subsystem {
      * @return returns true if the robot is within 2 degrees of wanted heading
      */ 
     public boolean reachedHeading(double heading) {
+        //Possibly edit this to see what error we get for turning to particular angles
+        //TODO: Tweek these values and see what occurs in auto
         if(navX.getYaw() <= (heading + 5) && navX.getYaw() >= (heading - 5)) {
             return true;
         } else {
