@@ -16,7 +16,7 @@ public class TurnToHeading extends Command {
 
     @Override
     protected void initialize() {
-        Robot.driveSystem.pidNavX.setPIDParameters(0.05, 0.01, 0, 0);
+        Robot.driveSystem.pidNavX.setPIDParameters(1, 0.01, 0, 0);
         Robot.driveSystem.stop();
         Robot.driveSystem.resetHeading();
         Robot.driveSystem.pidNavX.resetPID();
