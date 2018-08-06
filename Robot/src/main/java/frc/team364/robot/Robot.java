@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
 	    oi = new OI();
 	    DriveStraight = new DriveStraight();
         camera = CameraServer.getInstance().startAutomaticCapture("Video", 0);
-        camera.setResolution(640, 480);
+        camera.setResolution(320, 240);
         driveSystem.resetEncoders();
         driveSystem.resetHeading();
     }

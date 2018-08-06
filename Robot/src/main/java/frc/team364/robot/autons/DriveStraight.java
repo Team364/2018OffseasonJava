@@ -7,7 +7,7 @@ public class DriveStraight extends CommandGroup {
 
     public DriveStraight() {
        
-        addSequential(new DriveStraightForCounts(15000, false, true)); // Drive to scale
+        addSequential(new DriveStraightForCounts(15000, false, true)); // Drive past black line
     
     }
 }
