@@ -53,13 +53,4 @@ public class ArmSystem extends Subsystem {
         return  pot.getVoltage();
     }
 
-
-	/* Lets take this stuff out for now.
-	public void ForwardForTime(int armTime){
-        arm.set(ControlMode.PercentOutput, 1);
-    }
-      public void BackwardForTime(int armTime){
-        arm.set(ControlMode.PercentOutput, -1);
-    }
-	*/
 }
