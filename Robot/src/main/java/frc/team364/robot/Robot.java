@@ -54,19 +54,11 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         Scheduler.getInstance().removeAll();
 	    gameData = DriverStation.getInstance().getGameSpecificMessage();
-        if(oi.autoSelectorButton.get()) {
             if(gameData.charAt(1) == 'L') {
                 DriveStraight.start();
             } else {
                 DriveStraight.start();
             }
-        } else {
-            if(gameData.charAt(0) == 'L') {
-                DriveStraight.start();
-            } else {
-                DriveStraight.start();
-            }
-        }
         driveSystem.resetHeading();
         driveSystem.resetEncoders();
     }
