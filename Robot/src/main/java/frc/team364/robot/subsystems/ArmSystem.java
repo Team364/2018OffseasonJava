@@ -25,30 +25,43 @@ public class ArmSystem extends Subsystem {
     protected void initDefaultCommand() {
         setDefaultCommand(new TeleopArmCommand());
     }
-
-    public void forward() {
+    /**
+     * armForward()
+     * moves the arm forward
+     */
+    public void armForward() {
         arm.set(ControlMode.PercentOutput, 1);
     }
-
-    public void backward(){
+    /**
+     * armBackward()
+     * moves the arm backward
+     */
+    public void armBackward(){
         arm.set(ControlMode.PercentOutput, -1);
     }
 
-    public int getArmEncoderPosition() {
-        return arm.getSelectedSensorPosition(0);
-    }
-
+    /**
+     * armStop()
+     * stops the arm
+     */
     public void armStop() {
         arm.set(ControlMode.PercentOutput, 0);
     }
 
 	// This should be all you need to set the position you want.
-	// You may want to do some math to find out the counts per degree.
+    // You may want to do some math to find out the counts per degree.
+    /**
+     * moveArmToPosition()
+     * moves the arm to reach a desired potentiometer voltage
+     */
 	public void moveArmToPosition(double voltage){
 		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
 		arm.set(ControlMode.PercentOutput, pidArmOutput);
     }
-
+    /**
+     * getPotVoltage()
+     * returns the current voltage reading of the potentiometer
+     */
       public double getPotVoltage(){
         return  pot.getVoltage();
     }
