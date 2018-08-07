@@ -16,15 +16,26 @@ public class ClawSystem extends Subsystem {
     protected void initDefaultCommand() {
         setDefaultCommand(new TeleopClawCommand());
     }
-
+    /**
+     * openPincher()
+     * opens pincher by setting the solenoid for the piston to forward
+     */
     public void openPincher() {
         pincher.set(DoubleSolenoid.Value.kForward);
     }
 
+    /**
+     * closePincher()
+     * closes the pincher by setting the solenoid for the piston to reverse
+     */
     public void closePincher() {
         pincher.set(DoubleSolenoid.Value.kReverse);
     }
 
+    /**
+     * pincherOff()
+     * sets the picher solenoid to off
+     */
     public void pincherOff() {
         pincher.set(DoubleSolenoid.Value.kOff);
     }

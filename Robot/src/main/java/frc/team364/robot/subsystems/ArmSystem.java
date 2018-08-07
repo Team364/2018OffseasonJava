@@ -53,6 +53,7 @@ public class ArmSystem extends Subsystem {
     /**
      * moveArmToPosition()
      * moves the arm to reach a desired potentiometer voltage
+     * @param voltage voltage desired to be reached
      */
 	public void moveArmToPosition(double voltage){
 		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
@@ -61,6 +62,7 @@ public class ArmSystem extends Subsystem {
     /**
      * getPotVoltage()
      * returns the current voltage reading of the potentiometer
+     * @return retuns the voltage of the potentiometer
      */
       public double getPotVoltage(){
         return  pot.getVoltage();
