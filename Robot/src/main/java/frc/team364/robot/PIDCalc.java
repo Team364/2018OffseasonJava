@@ -22,12 +22,25 @@ public class PIDCalc {
     private double prev_error = 0;
     private double error = 0;
     private double result = 0;
-
+    /**
+     * PIDCalc()
+     * sets the PID and F terms for a PIDF conotroller for a particluar value
+     * @param pTerm Porportional Gain
+     * @param iTerm Intergal Gain
+     * @param dTerm Derivative Gain
+     * @param fTerm Filter Time Constant
+     */
     public PIDCalc(double pTerm, double iTerm, double dTerm, double fTerm, String name) {
         setPIDParameters(pTerm, iTerm, dTerm, fTerm);
         pidName = name;
     }
-
+    /**
+     * calculateOutput()
+     * calculates the output of a PIDF controller using the pre-determined values for PIDF. This means that the setpoint is trying to be reached.
+     * @param setpoint Desired Value
+     * @param value Value at which a sensor is currently at
+     * @return 1 or -1 depending on the result of the calculation
+     */
     public double calculateOutput(double setpoint, double actual) {
         error = setpoint - actual;
         integral += (error * 0.02);
@@ -42,7 +55,10 @@ public class PIDCalc {
         prev_error = error;
         return result;
     }
-
+    /**
+     * resetPID()
+     * sets the values for PID and F to zero
+     */
     public void resetPID() {
         derivative = 0;
         integral = 0;
@@ -50,6 +66,14 @@ public class PIDCalc {
         error = 0;
     }
 
+    /**
+     * setPIDParameters()
+     * sets the PIDF parameters from PIDCalc to variables which are used in the operation. Only to be used in PIDCalc file
+     * @param pTerm Porportional Gain for a given PIDF controller
+     * @param iTerm Intergal Gain for a given PIDF controller
+     * @param dTerm Derivative Gain for a given PIDF controller
+     * @param fTerm Filter Time Constant for a given PIDF controller
+     */
     public void setPIDParameters(double pTerm, double iTerm, double dTerm, double fTerm) {
         kP = pTerm;
         kI = iTerm;
