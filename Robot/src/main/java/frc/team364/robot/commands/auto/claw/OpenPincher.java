@@ -3,9 +3,14 @@ package frc.team364.robot.commands.auto.claw;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team364.robot.Robot;
 
-
+//I am assuming that the forward and reverse wires are backwards
+//TODO: Ensure the wires are correct and change this to execute open pincher
 public class OpenPincher extends Command {
 
+    /**
+     * OpenPincher()
+     * opnes pincher
+     */
     public OpenPincher() {
         requires(Robot.clawSystem);
         setTimeout(0.1);

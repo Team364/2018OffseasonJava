@@ -7,6 +7,11 @@ public class ArmMoveToPosition extends Command {
 
 	private int voltage;
 
+    /**
+     * ArmMoveToPosition()
+     * moves the arm to reach a desired positoin with the potentiometer and armPID
+     * @param armVoltage voltage desired to be reached
+     */
     public ArmMoveToPosition(int armVoltage) {
         requires(Robot.armSystem);
         voltage = armVoltage;

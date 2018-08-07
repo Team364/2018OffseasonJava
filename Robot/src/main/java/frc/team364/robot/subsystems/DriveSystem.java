@@ -37,7 +37,10 @@ public class DriveSystem extends Subsystem {
     public double pidOutputLeft;
     public double pidOutputRight;
 
-
+    /**
+     * DriveSystem()
+     * Drive train used for moving about the field
+     */
     public DriveSystem() {
         
         // Initialize TalonSRX objects

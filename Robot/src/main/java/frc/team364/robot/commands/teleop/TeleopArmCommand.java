@@ -5,6 +5,9 @@ import frc.team364.robot.Robot;
 
 public class TeleopArmCommand extends Command {
 
+    /**
+     * Command used for teleop control specific to the arm system
+     */
     public TeleopArmCommand() {
         requires(Robot.armSystem);
     }

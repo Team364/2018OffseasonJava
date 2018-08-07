@@ -6,6 +6,10 @@ import frc.team364.robot.Robot;
 
 public class ShiftDown extends Command {
 
+    /**
+     * ShiftDown()
+     * Shifts the drivetrain into low gear
+     */ 
     public ShiftDown() {
         requires(Robot.driveSystem);
         setTimeout(0.1);

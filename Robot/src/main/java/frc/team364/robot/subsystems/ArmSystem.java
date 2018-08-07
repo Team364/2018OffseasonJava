@@ -15,6 +15,10 @@ public class ArmSystem extends Subsystem {
 	private double pidArmOutput;
     private AnalogInput pot;
 
+    /**
+     * ArmSystem()
+     * used to rotate the arm about a pivot on the y-axis
+     */
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
 		pidArm = new PIDCalc(0.1, 0, 0, 0, "Arm");
@@ -52,7 +56,7 @@ public class ArmSystem extends Subsystem {
     // You may want to do some math to find out the counts per degree.
     /**
      * moveArmToPosition()
-     * moves the arm to reach a desired potentiometer voltage
+     * moves the arm to reach a desired positoin with the potentiometer and armPID
      * @param voltage voltage desired to be reached
      */
 	public void moveArmToPosition(double voltage){

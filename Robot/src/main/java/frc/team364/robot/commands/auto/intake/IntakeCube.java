@@ -6,6 +6,10 @@ import frc.team364.robot.Robot;
 
 public class IntakeCube extends Command {
 
+    /**
+     * IntakeCube()
+     * runs the intake motors at full power
+     */
     public IntakeCube() {
         requires(Robot.intakeSystem);
         setTimeout(1.5);

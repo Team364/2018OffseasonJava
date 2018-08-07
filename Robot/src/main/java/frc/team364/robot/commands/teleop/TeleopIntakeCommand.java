@@ -13,7 +13,9 @@ import frc.team364.robot.Robot;
 
 
 public class TeleopIntakeCommand extends Command {
-
+    /**
+     * Command used for teleop control specific to the intake system
+     */
     public TeleopIntakeCommand() {
         requires(Robot.intakeSystem);
     }

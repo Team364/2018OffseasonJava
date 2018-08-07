@@ -8,6 +8,11 @@ public class TurnToHeading extends Command {
 
     private double wantedHeading;
 
+    /**
+     * TurnToHeading()
+     * Turns the robot to a specified heading using PIDCalc and the navX
+     * @param heading heading to turn to
+     */ 
     public TurnToHeading(double heading) {
         requires(Robot.driveSystem);
         wantedHeading = heading;

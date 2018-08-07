@@ -9,6 +9,10 @@ public class ClawSystem extends Subsystem {
 
     private DoubleSolenoid pincher;
 
+    /**
+     * ClawSystem()
+     * used to open and close pincher for grabbing power cubes
+     */
     public ClawSystem() {
         pincher = new DoubleSolenoid(RobotMap.pinchPistonPort1, RobotMap.pinchPistonPort2);
     }

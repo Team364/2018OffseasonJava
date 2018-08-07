@@ -9,6 +9,13 @@ public class DriveStraightForCounts extends Command {
     private boolean driveBackwards;
     private boolean driveWithGyro;
 
+    /**
+     * DriveStraightForCounts()
+     * Uses the TalonSRX PID to drive to a certain number of counts
+     * @param counts specify encoder counts to drive to
+     * @param backwards indicate whether the robot is to move backwards
+     * @param useGyro indicate whether the robot is to use gyro to correct path
+     */
     public DriveStraightForCounts(int counts, boolean backwards, boolean useGyro) {
         requires(Robot.driveSystem);
         driveCounts = counts;

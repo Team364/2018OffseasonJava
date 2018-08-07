@@ -12,6 +12,10 @@ public class IntakeSystem extends Subsystem {
     private TalonSRX leftIntake;
     private TalonSRX rightIntake;
 
+    /**
+     * IntakeSystem()
+     * used to intake cubes into claw for transport and outtake cubes for scoring
+     */
     public IntakeSystem() {
         leftIntake = new TalonSRX(RobotMap.intakeLeft);
         rightIntake = new TalonSRX(RobotMap.intakeRight);

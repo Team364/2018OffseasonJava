@@ -13,9 +13,20 @@ import frc.team364.robot.Robot;
 public class TeleopClawCommand extends Command {
 
     // Variables for claw toggle
+    /**
+     * pincherState
+     * is responsible for setting the solenoid to forward or backwards. 0 opens, 1 closes
+     */
     private int pincherState;
+    /**
+     * pincherLatch
+     * Is set to false unless pinchButton is pressed so that when the pinchButton is pressed pincherstate deterimines the course of action taken by the solenioid
+     */
     private boolean pincherLatch;
 
+    /**
+     * Command used for teleop control specific to the claw system
+     */
     public TeleopClawCommand() {
         requires(Robot.clawSystem);
         pincherState = 0;

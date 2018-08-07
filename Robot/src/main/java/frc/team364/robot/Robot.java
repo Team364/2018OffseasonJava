@@ -12,17 +12,43 @@ import frc.team364.robot.subsystems.*;
 
 public class Robot extends TimedRobot {
 
+    /**
+     * DriveSystem()
+     * Drive train used for moving about the field
+     */
     public static DriveSystem driveSystem;
+    /**
+     * IntakeSystem()
+     * used to intake cubes into claw for transport and outtake cubes for scoring
+     */
     public static IntakeSystem intakeSystem;
+    /**
+     * ClawSystem()
+     * used to open and close pincher for grabbing power cubes
+     */
     public static ClawSystem clawSystem;
+    /**
+     * ArmSystem()
+     * used to rotate the arm about a pivot on the y-axis
+     */
     public static ArmSystem armSystem;
+    /**
+     * Game Data for Alliance Switch, Scale, and Opposition Swtich
+     */
     public String gameData = "";
-
+    /**
+     * Control initialization
+     */
     public static OI oi;
 
+    /**
+     * DriveStraightAuto File
+     */
     public static Command DriveStraight;
 
-
+    /**
+     * Driver Visual Camera
+     */
     public UsbCamera camera;
 
     /**

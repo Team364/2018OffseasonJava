@@ -6,6 +6,10 @@ import frc.team364.robot.Robot;
 
 public class ShiftUp extends Command {
 
+    /**
+     * ShiftUp()
+     * Shifts the drivetrain into high gear
+     */ 
     public ShiftUp() {
         requires(Robot.driveSystem);
         setTimeout(0.1);

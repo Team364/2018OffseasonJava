@@ -13,6 +13,9 @@ import frc.team364.robot.Robot;
 
 public class TeleopDriveCommand extends Command {
 
+    /**
+     * Command used for teleop control specific to the drive system
+     */
     public TeleopDriveCommand() {
         requires(Robot.driveSystem);
     }

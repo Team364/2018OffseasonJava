@@ -6,6 +6,10 @@ import frc.team364.robot.Robot;
 
 public class OuttakeCube extends Command {
 
+    /**
+     * OuttakeCube()
+     * runs the intake motors at full power in reverse
+     */
     public OuttakeCube() {
         requires(Robot.intakeSystem);
         setTimeout(0.5);
