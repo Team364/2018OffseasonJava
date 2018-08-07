@@ -8,6 +8,7 @@ import frc.team364.robot.commands.auto.drive.*;
  */
 public class DriveStraight extends CommandGroup {
     /**
+     * Objective - Cross the line
      *<p>1 Drive Foward
      */
     public DriveStraight() {
