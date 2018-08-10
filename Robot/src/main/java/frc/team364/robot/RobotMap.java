@@ -31,13 +31,13 @@ public class RobotMap {
      * shifterPort1
      * is the shifter port corresponding to forward for the drive train shifters - drive system
      */
-    public static final int shifterPort1 = 3;
+    public static final int shifterPort1 = 0;
 
     /**
      * shifterPort2
      * is the shifter port corresponding to reverse for the drive train shifters - drive system
      */
-    public static final int shifterPort2 = 4;
+    public static final int shifterPort2 = 3;
 
 
     //Arm Objects
@@ -66,12 +66,12 @@ public class RobotMap {
      * pinchPistonPort1
      * is the pison port corresponding to forward for the pincher -- claw system
      */
-    public static final int pinchPistonPort1 = 2;
+    public static final int pinchPistonPort1 = 1;
 
     /**
      * pinchPistonPort2
      * is the piston port corresponding to reverse for the pincher -- claw system
      */
-    public static final int pinchPistonPort2 = 5;
+    public static final int pinchPistonPort2 = 2;
 
 }
