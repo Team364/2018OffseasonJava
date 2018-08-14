@@ -34,14 +34,14 @@ public class ArmSystem extends Subsystem {
      * moves the arm forward
      */
     public void armForward() {
-        arm.set(ControlMode.PercentOutput, 1);
+        arm.set(ControlMode.PercentOutput, 0.7);
     }
     /**
      * armBackward()
      * moves the arm backward
      */
     public void armBackward(){
-        arm.set(ControlMode.PercentOutput, -1);
+        arm.set(ControlMode.PercentOutput, -0.7);
     }
 
     /**

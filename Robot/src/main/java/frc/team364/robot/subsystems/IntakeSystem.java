@@ -29,7 +29,7 @@ public class IntakeSystem extends Subsystem {
      * runs the intake motors at full power
      */
     public void intake() {
-        leftIntake.set(ControlMode.PercentOutput, 1);
+        leftIntake.set(ControlMode.PercentOutput, -1);
         rightIntake.set(ControlMode.PercentOutput, 1);
     }
     /**
@@ -37,7 +37,7 @@ public class IntakeSystem extends Subsystem {
      * runs the intake motors at full power in reverse
      */
     public void outtake() {
-        leftIntake.set(ControlMode.PercentOutput, -1);
+        leftIntake.set(ControlMode.PercentOutput, 1);
         rightIntake.set(ControlMode.PercentOutput, -1);
     }
     /**
@@ -46,7 +46,7 @@ public class IntakeSystem extends Subsystem {
      */
     public void outtakeForPressure(){
 
-        leftIntake.set(ControlMode.PercentOutput, -Robot.oi.controller.getRawAxis(3));
+        leftIntake.set(ControlMode.PercentOutput, Robot.oi.controller.getRawAxis(3));
         rightIntake.set(ControlMode.PercentOutput, -Robot.oi.controller.getRawAxis(3));
     }
 

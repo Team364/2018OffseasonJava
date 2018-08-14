@@ -32,7 +32,7 @@ public class TeleopDriveCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.driveSystem.tankDrive(Robot.oi.leftStick.getRawAxis(1), Robot.oi.rightStick.getRawAxis(1));
+        Robot.driveSystem.tankDrive(-Robot.oi.leftStick.getRawAxis(1), Robot.oi.rightStick.getRawAxis(1));
         if(Robot.oi.shiftHigh.get()) {
             Robot.driveSystem.shiftHigh();
         } else if(Robot.oi.shiftLow.get()) {
