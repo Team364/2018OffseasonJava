@@ -53,16 +53,16 @@ public class DriveSystem extends Subsystem {
         shifter = new DoubleSolenoid(RobotMap.shifterPort1, RobotMap.shifterPort2);
         
 	    // Set the front drive motors to follow the rear
-        leftFront.follow(leftRear);
-        rightFront.follow(rightRear);
+        leftRear.follow(leftFront);
+        rightRear.follow(rightFront);
 
 	    // Config PF on left side
-        leftRear.config_kP(0, 0.25, 100);
-        leftRear.config_kF(0, 1, 100);
+        leftFront.config_kP(0, 0.25, 100);
+        leftFront.config_kF(0, 1, 100);
 
 	    // Config PF on right side
-        rightRear.config_kP(0, 0.25, 100);
-        rightRear.config_kF(0, 1, 100);
+        rightFront.config_kP(0, 0.25, 100);
+        rightFront.config_kF(0, 1, 100);
 
 	    // Init the navX, Pathfinder, and PIDCalc
         navX = new AHRS(SPI.Port.kMXP);
@@ -84,8 +84,8 @@ public class DriveSystem extends Subsystem {
      * @param right sets the right drive power
      */
     public void tankDrive(double left, double right) {
-        leftRear.set(ControlMode.PercentOutput, left);
-        rightRear.set(ControlMode.PercentOutput, right);//negate in case of backwards
+        leftFront.set(ControlMode.PercentOutput, left);
+        rightFront.set(ControlMode.PercentOutput, right);//negate in case of backwards
     }
 
     /**
@@ -94,8 +94,8 @@ public class DriveSystem extends Subsystem {
      * Use this in auto to stop the drivetrain inbetween commands
      */ 
     public void stop() {
-        leftRear.set(ControlMode.PercentOutput, 0);
-        rightRear.set(ControlMode.PercentOutput, 0);
+        leftFront.set(ControlMode.PercentOutput, 0);
+        rightFront.set(ControlMode.PercentOutput, 0);
     }
 
     /**
@@ -103,7 +103,7 @@ public class DriveSystem extends Subsystem {
      * @return returns the left encoder position in counts
      */ 
     public int getLeftEncoderPosition() {
-        return leftRear.getSelectedSensorPosition(0);
+        return leftFront.getSelectedSensorPosition(0);
     }
 
     /**
@@ -111,7 +111,7 @@ public class DriveSystem extends Subsystem {
      * @return returns the right encoder position in counts
      */ 
     public int getRightEncoderPosition() {
-        return rightRear.getSelectedSensorPosition(0);//Negate if the right side gets negated
+        return rightFront.getSelectedSensorPosition(0);//Negate if the right side gets negated
     }
 
     /**
@@ -135,22 +135,22 @@ public class DriveSystem extends Subsystem {
             pidOutputRight = pidRight.calculateOutput(counts, -getRightEncoderPosition());
             pidOutputNavX = pidNavX.calculateOutput(0, getGyroAngle());
             if(useGyro) {
-                leftRear.set(ControlMode.PercentOutput, -pidOutputLeft + pidOutputNavX);
-                rightRear.set(ControlMode.PercentOutput, pidOutputRight + pidOutputNavX);
+                leftFront.set(ControlMode.PercentOutput, -pidOutputLeft + pidOutputNavX);
+                rightFront.set(ControlMode.PercentOutput, pidOutputRight + pidOutputNavX);
             } else {
-                leftRear.set(ControlMode.PercentOutput, -pidOutputLeft);
-                rightRear.set(ControlMode.PercentOutput, pidOutputRight);
+                leftFront.set(ControlMode.PercentOutput, -pidOutputLeft);
+                rightFront.set(ControlMode.PercentOutput, pidOutputRight);
             }
         } else {
             pidOutputLeft = pidLeft.calculateOutput(counts, getLeftEncoderPosition());
             pidOutputRight = pidRight.calculateOutput(counts, getRightEncoderPosition());
             pidOutputNavX = pidNavX.calculateOutput(0, getGyroAngle());
             if(useGyro) {
-                leftRear.set(ControlMode.PercentOutput, pidOutputLeft + pidOutputNavX);
-                rightRear.set(ControlMode.PercentOutput, -pidOutputRight + pidOutputNavX);
+                leftFront.set(ControlMode.PercentOutput, pidOutputLeft + pidOutputNavX);
+                rightFront.set(ControlMode.PercentOutput, -pidOutputRight + pidOutputNavX);
             } else {
-                leftRear.set(ControlMode.PercentOutput, pidOutputLeft);
-                rightRear.set(ControlMode.PercentOutput, -pidOutputRight);
+                leftFront.set(ControlMode.PercentOutput, pidOutputLeft);
+                rightFront.set(ControlMode.PercentOutput, -pidOutputRight);
             }
         }
     }
@@ -163,8 +163,8 @@ public class DriveSystem extends Subsystem {
      */ 
     public boolean withinEncoderCountRange(int counts) {
 
-        double leftRearPos = leftRear.getSelectedSensorPosition(0);
-        if(Math.abs(leftRearPos) >= (counts - 100)) {
+        double leftFrontPos = leftFront.getSelectedSensorPosition(0);
+        if(Math.abs(leftFrontPos) >= (counts - 100)) {
             return true;
         } else {
             return false;
@@ -189,8 +189,8 @@ public class DriveSystem extends Subsystem {
         //Remove dampening on the pidOutputNavX to increase turn speed
         //Possibly add navX.zeroYaw(); to see if that corrects error
         pidOutputNavX = pidNavX.calculateOutput(heading, navX.getYaw());
-        leftRear.set(ControlMode.PercentOutput, pidOutputNavX * 0.6);
-        rightRear.set(ControlMode.PercentOutput, pidOutputNavX * 0.6);
+        leftFront.set(ControlMode.PercentOutput, pidOutputNavX * 0.6);
+        rightFront.set(ControlMode.PercentOutput, pidOutputNavX * 0.6);
     }
 
     /**
@@ -237,8 +237,8 @@ public class DriveSystem extends Subsystem {
      * This resets the encoders on the Talons to zero
     */
     public void resetEncoders() {
-        leftRear.setSelectedSensorPosition(0, 0, 0);
-        rightRear.setSelectedSensorPosition(0, 0, 0);
+        leftFront.setSelectedSensorPosition(0, 0, 0);
+        rightFront.setSelectedSensorPosition(0, 0, 0);
     }
 
 }
