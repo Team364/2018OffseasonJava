@@ -21,7 +21,7 @@ public class ArmSystem extends Subsystem {
      */
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
-		pidArm = new PIDCalc(0.1, 0, 0, 0, "Arm");
+		pidArm = new PIDCalc(0, 0, 0, 0, "Arm");
         pot = new AnalogInput(0);
     }
 
@@ -43,6 +43,14 @@ public class ArmSystem extends Subsystem {
     public void armBackward(){
         arm.set(ControlMode.PercentOutput, -0.7);
     }
+    /**
+     * powerArm()
+     * applies power to the arm
+     * @param armPower percent output for the arm motor
+     */
+    public void powerArm(double armPower){
+        arm.set(ControlMode.PercentOutput, armPower);
+    }
 
     /**
      * armStop()
@@ -62,6 +70,29 @@ public class ArmSystem extends Subsystem {
 	public void moveArmToPosition(double voltage){
 		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
 		arm.set(ControlMode.PercentOutput, pidArmOutput);
+    }
+
+    public void keepArmVoltage(double voltage){
+        pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
+        arm.set(ControlMode.PercentOutput, pidArmOutput);
+    }
+
+    public boolean withinSafeZone(){
+        if(getPotVoltage() >= 4.7){
+            return false;
+        
+        }else{
+            return true;
+        }
+    }
+
+    public boolean withinDangerZone(){
+        if(getPotVoltage() >= 4.6){
+            return true;
+        
+        }else{
+            return false;
+        }
     }
     /**
      * getPotVoltage()
