@@ -26,6 +26,18 @@ public class TeleopArmCommand extends Command {
         SmartDashboard.putBoolean("ArmStay", armStay);
         if(!armMovingToPosition){
             //TODO: Put armButtons for preset postions here
+            if(Robot.oi.switchButton.get()){
+                armSystem.moveArmToPosition(3.12);
+            }
+            if(Robot.oi.backCubePickupButton.get()){
+                armSystem.moveArmToPosition(4.6);
+            }
+            if(Robot.oi.vaultButton.get()){
+                armSystem.moveArmToPosition(0.08);
+            }
+            if(Robot.oi.exchangeButton.get()){
+                armSystem.moveArmToPosition(4.2);
+            }
         }else{
         if(armSystem.withinDangerZone() && !(Robot.oi.controller.getPOV() == 180)){
             Robot.armSystem.powerArm(-0.04);
