@@ -12,6 +12,7 @@ public class TeleopArmCommand extends Command {
     public boolean armStay = false;
     public double voltage = 0.008;
     public ArmSystem armSystem = Robot.armSystem;
+    public boolean armMovingToPosition = false;
     /**
      * Command used for teleop control specific to the arm system
      */
@@ -23,6 +24,9 @@ public class TeleopArmCommand extends Command {
     protected void execute() {
         auto = false;
         SmartDashboard.putBoolean("ArmStay", armStay);
+        if(!armMovingToPosition){
+            //TODO: Put armButtons for preset postions here
+        }else{
         if(armSystem.withinDangerZone() && !(Robot.oi.controller.getPOV() == 180)){
             Robot.armSystem.powerArm(-0.04);
 
@@ -54,6 +58,7 @@ public class TeleopArmCommand extends Command {
                 
             }
         }
+    }
     }
 }
         
