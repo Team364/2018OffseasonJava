@@ -21,10 +21,6 @@ public class OI {
      */
     public Joystick controller;
 
-
-    //public double leftPower; Not sure what these two actually do
-    //public double rightPower;
-
     /**
      * shiftLow
      * Trigger used to shift the transmission into low gear - leftStick - drive system
@@ -53,6 +49,27 @@ public class OI {
      */
     public JoystickButton outtakeButton;
 
+    /**
+     * Button used to move arm to position using potentiometer voltage
+     */
+    public JoystickButton switchButton;
+
+    /**
+     * Button used to move arm to backwards for picking up cubes from behind position using potentiometer voltage
+     */
+    public JoystickButton backCubePickupButton;
+    
+
+      /**
+     * Button used to move arm to the full foward position - lowest possible on potentiometer - using potentiometer voltage
+     */
+    public JoystickButton vaultButton;
+
+    /**
+     * Button used to move the arm to a postion that can accept cubes directly from the exchange
+     */
+    public JoystickButton exchangeButton;
+
     public OI() {
         //Physical control objects
 
@@ -69,7 +86,14 @@ public class OI {
         shiftHigh = new JoystickButton(rightStick, 1);
 
         //Claw System JoyStick Buttons
-        //TODO: Add Buttons for preset arm positions
+        
         pinchButton = new JoystickButton(controller, 5);
+
+        //Arm Buttons
+        switchButton = new JoystickButton(controller, 1);
+        backCubePickupButton = new JoystickButton(controller, 2);
+        vaultButton = new JoystickButton(controller, 3);
+        exchangeButton = new JoystickButton(controller, 4);
+
     }
 }

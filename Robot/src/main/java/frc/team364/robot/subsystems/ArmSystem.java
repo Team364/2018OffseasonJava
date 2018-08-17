@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.AnalogInput;
 public class ArmSystem extends Subsystem {
 
     private TalonSRX arm;
-	private PIDCalc pidArm;
-	private double pidArmOutput;
+    private PIDCalc pidArm;
+    private PIDCalc pidMoveArm;
+    private double pidArmOutput;
+    private double pidMoveArmOutput;
     private AnalogInput pot;
 
     /**
@@ -21,7 +23,8 @@ public class ArmSystem extends Subsystem {
      */
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
-		pidArm = new PIDCalc(0, 0, 0, 0, "Arm");
+        pidArm = new PIDCalc(0, 0, 0, 0, "Arm");
+        pidMoveArm = new PIDCalc(0.1, 0, 0, 0, "moveArm");
         pot = new AnalogInput(0);
     }
 
@@ -68,8 +71,8 @@ public class ArmSystem extends Subsystem {
      * @param voltage voltage desired to be reached
      */
 	public void moveArmToPosition(double voltage){
-		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
-		arm.set(ControlMode.PercentOutput, pidArmOutput);
+		pidMoveArmOutput = pidMoveArm.calculateOutput(voltage, getPotVoltage());
+		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
     }
 
     public void keepArmVoltage(double voltage){
