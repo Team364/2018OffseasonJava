@@ -7,6 +7,7 @@ import frc.team364.robot.RobotMap;
 import frc.team364.robot.PIDCalc;
 import frc.team364.robot.commands.teleop.TeleopArmCommand;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.PIDSource;
 
 public class ArmSystem extends Subsystem {
 
@@ -16,6 +17,32 @@ public class ArmSystem extends Subsystem {
     private double pidArmOutput;
     private double pidMoveArmOutput;
     private AnalogInput pot;
+    /**
+     * Because the PID needs larger values to operate properly(speculation),
+     * a scaler is used to make the math work better. 
+     * The PID has been tested and works for encoder counts on the drive
+     * train. Those values are typically in the thousands. Because the values
+     * are so small, the PID is outputting no value - neither -1 or 1
+     *- because the output is between -1 and 1 and given the setup of the PIDCalc
+     * this will output nothing. By scaling the values, this issue is solved.
+     * This is the code for caclulating output. See the if-else if structure.
+     *     
+     *<p>public double calculateOutput(double setpoint, double actual) {
+     *<p>error = setpoint - actual;
+     *<p>integral += (error * 0.02);
+     *<p>derivative = (error - prev_error) / 0.02;
+     *<p>result = kF + (kP * error) + (kI * integral) + (kD * derivative);
+     *<p>   if(result > 1) {
+     *<p>      result = 1;
+     *<p>  } else if(result < -1) {
+     *<p>       result = -1;
+     *<p>  }
+     *<p>  smartDashVars();
+     *<p>  prev_error = error;
+     *<p>  return result;
+     <p>   }
+     */
+    private int PIDscaler = 10000;
 
     /**
      * ArmSystem()
@@ -71,7 +98,7 @@ public class ArmSystem extends Subsystem {
      * @param voltage voltage desired to be reached
      */
 	public void moveArmToPosition(double voltage){
-		pidMoveArmOutput = pidMoveArm.calculateOutput(voltage, getPotVoltage());
+		pidMoveArmOutput = pidMoveArm.calculateOutput(voltage*PIDscaler, getPotVoltage()*PIDscaler);
 		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
     }
 
@@ -80,12 +107,12 @@ public class ArmSystem extends Subsystem {
      * moves the arm to reach the switch position with the potentiometer and armPID
      */
     public void moveArmToSwitchPosition(){
-		pidMoveArmOutput = pidMoveArm.calculateOutput(3.12, getPotVoltage());//ensure this matches the teleop value for move arm to switch position
+		pidMoveArmOutput = pidMoveArm.calculateOutput(3.12*PIDscaler, getPotVoltage()*PIDscaler);//ensure this matches the teleop value for move arm to switch position
 		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
     }
 
     public void keepArmVoltage(double voltage){
-        pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
+        pidArmOutput = pidArm.calculateOutput(voltage*PIDscaler, getPotVoltage()*PIDscaler);
         arm.set(ControlMode.PercentOutput, pidArmOutput);
     }
 
