@@ -26,7 +26,7 @@ public class TeleopArmCommand extends Command {
         if(!POVactive()){
             //TODO: Put armButtons for preset postions here
             if(Robot.oi.switchButton.get()){
-                armSystem.moveArmToPosition(3.12);
+                armSystem.moveArmToPosition(3.12);//If changed update the auto command
             }
             if(Robot.oi.backCubePickupButton.get()){
                 armSystem.moveArmToPosition(4.6);

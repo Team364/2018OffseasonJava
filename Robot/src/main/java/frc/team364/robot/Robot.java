@@ -47,6 +47,16 @@ public class Robot extends TimedRobot {
     public static Command DriveStraight;
 
     /**
+     * RightSwitchAuto File
+     */
+    public static Command RightSwitch;
+
+    /**
+     * LeftSwitchAuto File
+     */
+    public static Command LeftSwitch;
+
+    /**
      * Driver Visual Camera
      */
     public UsbCamera camera;
@@ -66,7 +76,9 @@ public class Robot extends TimedRobot {
         clawSystem = new ClawSystem();
         armSystem = new ArmSystem();
 	    oi = new OI();
-	    DriveStraight = new DriveStraight();
+        DriveStraight = new DriveStraight();
+        LeftSwitch = new LeftSwitch();
+        RightSwitch = new RightSwitch();
         camera = CameraServer.getInstance().startAutomaticCapture("Video", 0);
         camera.setResolution(320, 240);
         driveSystem.resetEncoders();
@@ -80,10 +92,10 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         Scheduler.getInstance().removeAll();
 	    gameData = DriverStation.getInstance().getGameSpecificMessage();
-            if(gameData.charAt(1) == 'L') {
-                DriveStraight.start();
+            if(gameData.charAt(0) == 'L') {
+                LeftSwitch.start();//DriveStraight.start()
             } else {
-                DriveStraight.start();
+                RightSwitch.start();//DriveStraight.start()
             }
         driveSystem.resetHeading();
         driveSystem.resetEncoders();

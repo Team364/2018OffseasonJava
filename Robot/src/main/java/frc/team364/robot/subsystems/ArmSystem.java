@@ -75,6 +75,15 @@ public class ArmSystem extends Subsystem {
 		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
     }
 
+    /**
+     * moveArmToSwitchPosition()
+     * moves the arm to reach the switch position with the potentiometer and armPID
+     */
+    public void moveArmToSwitchPosition(){
+		pidMoveArmOutput = pidMoveArm.calculateOutput(3.12, getPotVoltage());//ensure this matches the teleop value for move arm to switch position
+		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
+    }
+
     public void keepArmVoltage(double voltage){
         pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
         arm.set(ControlMode.PercentOutput, pidArmOutput);
