@@ -18,6 +18,8 @@ public class ArmSystem extends Subsystem {
     private double pidMoveArmOutput;
     private AnalogInput pot;
     /**
+     * I might just need to add f-gain instead of this....
+     * Needs to be tested
      * Because the PID needs larger values to operate properly(speculation),
      * a scaler is used to make the math work better. 
      * The PID has been tested and works for encoder counts on the drive
