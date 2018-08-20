@@ -12,7 +12,6 @@ public class TeleopArmCommand extends Command {
     public boolean armStay = false;
     public double voltage = 0.008;
     public ArmSystem armSystem = Robot.armSystem;
-    public boolean armMovingToPosition = false;
     /**
      * Command used for teleop control specific to the arm system
      */
@@ -24,7 +23,7 @@ public class TeleopArmCommand extends Command {
     protected void execute() {
         auto = false;
         SmartDashboard.putBoolean("ArmStay", armStay);
-        if(!armMovingToPosition){
+        if(!POVactive()){
             //TODO: Put armButtons for preset postions here
             if(Robot.oi.switchButton.get()){
                 armSystem.moveArmToPosition(3.12);
@@ -50,10 +49,12 @@ public class TeleopArmCommand extends Command {
         if(Robot.oi.controller.getPOV() == 0) {
             Robot.armSystem.armForward();
             armStay = false;
+            
         //If down on the directional pad is pressed then the arm will move backwards
         } else if(Robot.oi.controller.getPOV() == 180) {
             Robot.armSystem.armBackward();
             armStay = false;
+
         } else {
             if(!auto){
                 /*voltage = armSystem.getPotVoltage();
@@ -71,6 +72,14 @@ public class TeleopArmCommand extends Command {
             }
         }
     }
+    }
+}
+
+public boolean POVactive() {
+    if(Robot.oi.controller.getPOV() == -1){
+        return false;
+    }else{
+        return true;
     }
 }
         
