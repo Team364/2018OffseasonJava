@@ -44,7 +44,6 @@ public class ArmSystem extends Subsystem {
      *<p>  return result;
      <p>   }
      */
-    private int PIDscaler = 10000;
 
     /**
      * ArmSystem()
@@ -52,8 +51,8 @@ public class ArmSystem extends Subsystem {
      */
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
-        pidArm = new PIDCalc(0, 0, 0, 0, "Arm");
-        pidMoveArm = new PIDCalc(0.1, 0, 0, 0, "moveArm");
+        pidArm = new PIDCalc(100, 0, 0, 0, "Arm");
+        pidMoveArm = new PIDCalc(0.1, 0, 0, 0.5, "moveArm");
         pot = new AnalogInput(0);
     }
 
@@ -73,7 +72,7 @@ public class ArmSystem extends Subsystem {
      * moves the arm backward
      */
     public void armBackward(){
-        arm.set(ControlMode.PercentOutput, -0.7);
+        arm.set(ControlMode.PercentOutput, -0.6);
     }
     /**
      * powerArm()
@@ -100,8 +99,9 @@ public class ArmSystem extends Subsystem {
      * @param voltage voltage desired to be reached
      */
 	public void moveArmToPosition(double voltage){
-		pidMoveArmOutput = pidMoveArm.calculateOutput(voltage*PIDscaler, getPotVoltage()*PIDscaler);
-		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
+		pidArmOutput = pidArm.calculateOutput(voltage, getPotVoltage());
+        arm.set(ControlMode.PercentOutput, pidArmOutput);
+        System.out.println("moveArmToPosition active");
     }
 
     /**
@@ -109,13 +109,8 @@ public class ArmSystem extends Subsystem {
      * moves the arm to reach the switch position with the potentiometer and armPID
      */
     public void moveArmToSwitchPosition(){
-		pidMoveArmOutput = pidMoveArm.calculateOutput(3.12*PIDscaler, getPotVoltage()*PIDscaler);//ensure this matches the teleop value for move arm to switch position
+		pidMoveArmOutput = pidMoveArm.calculateOutput(3.12, getPotVoltage());//ensure this matches the teleop value for move arm to switch position
 		arm.set(ControlMode.PercentOutput, pidMoveArmOutput);
-    }
-
-    public void keepArmVoltage(double voltage){
-        pidArmOutput = pidArm.calculateOutput(voltage*PIDscaler, getPotVoltage()*PIDscaler);
-        arm.set(ControlMode.PercentOutput, pidArmOutput);
     }
 
     public boolean withinSafeZone(){

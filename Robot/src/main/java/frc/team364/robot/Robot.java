@@ -79,8 +79,8 @@ public class Robot extends TimedRobot {
         DriveStraight = new DriveStraight();
         LeftSwitch = new LeftSwitch();
         RightSwitch = new RightSwitch();
-        camera = CameraServer.getInstance().startAutomaticCapture("Video", 0);
-        camera.setResolution(320, 240);
+      //  camera = CameraServer.getInstance().startAutomaticCapture("Video", 0);
+      //  camera.setResolution(320, 240);
         driveSystem.resetEncoders();
         driveSystem.resetHeading();
     }
