@@ -94,16 +94,11 @@ public class TeleopArmCommand extends Command {
     
     if(vaultButtonLatch = true){
     if(armState == 2){
-        if(switchCounter == 1){
-            System.out.println("arm should move to X button pos");
-            armSystem.moveArmToPosition(0.07);//If changed update the auto command 3.12
-            }else{
-                armSystem.armStop();
-            }
+       Robot.armSystem.armBackward();
         }
     
         if(armState == 2){
-        if(armSystem.getPotVoltage() <= 0.07){
+        if(armSystem.getPotVoltage() <= 0.8){
             System.out.println("vaultButtonShouldStop");
             vaultButtonLatch = false;
             buttonActive = false;
@@ -114,7 +109,9 @@ public class TeleopArmCommand extends Command {
         }
     }//Vault Latch
 
-    
+    if((POVactive())&&(buttonActive)){
+        armState = 0;
+    }
     
       if(Robot.oi.controller.getPOV() == 0){
           Robot.armSystem.armForward();
