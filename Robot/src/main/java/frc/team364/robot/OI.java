@@ -69,6 +69,7 @@ public class OI {
      * Button used to move the arm to a postion that can accept cubes directly from the exchange
      */
     public JoystickButton exchangeButton;
+    public JoystickButton resetButton;
 
     public OI() {
         //Physical control objects
@@ -94,6 +95,7 @@ public class OI {
         backCubePickupButton = new JoystickButton(controller, 2);
         vaultButton = new JoystickButton(controller, 3);
         exchangeButton = new JoystickButton(controller, 4);
+        resetButton = new JoystickButton(controller, 7);
 
     }
 }

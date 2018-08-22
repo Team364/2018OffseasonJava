@@ -12,6 +12,7 @@ public class TeleopArmCommand extends Command {
     public boolean controlsActive = false;
     public int switchCounter = 0;
     public int vaultCounter = 0;
+    public int backCubePickupCounter = 0;
           /**
          * 0 - nothing happening
          * 1 - switch
@@ -24,6 +25,7 @@ public class TeleopArmCommand extends Command {
     private boolean buttonActive;
     private boolean switchButtonLatch;
     private boolean vaultButtonLatch;
+    private boolean backCubePickupButtonLatch;
 
     /**
      * Command used for teleop control specific to the arm system
@@ -35,10 +37,22 @@ public class TeleopArmCommand extends Command {
         buttonActive = false;
         switchButtonLatch = false;
         vaultButtonLatch = false;
+        backCubePickupButtonLatch = false;
     }
 
     @Override
     protected void execute() {
+        if(Robot.oi.resetButton.get()){
+            armState = 0;
+            switchButtonLatch = false;
+            buttonActive = false;
+            switchCounter = 0;
+            vaultCounter = 0;
+            backCubePickupCounter = 0;
+        }
+        if((POVactive())&&(buttonActive)){
+            armState = 0;
+        }
        System.out.println("Arm State: " + armState);
        System.out.println("switchCounter " + switchCounter);
 //System.out.println("POV active: " + POVactive());
@@ -109,9 +123,36 @@ public class TeleopArmCommand extends Command {
         }
     }//Vault Latch
 
-    if((POVactive())&&(buttonActive)){
-        armState = 0;
-    }
+    if(Robot.oi.backCubePickupButton.get()){
+        armState = 3;
+        backCubePickupButtonLatch = true;
+        buttonActive = true;
+        System.out.println("vaultButtonLatch is true");
+        System.out.println("The X Button has been pressed");
+        if(backCubePickupCounter < 1){
+            backCubePickupCounter++;
+        }
+        }//backCubePickup Button
+
+    
+    if(backCubePickupButtonLatch = true){
+    if(armState == 3){
+       Robot.armSystem.armForward();
+        }
+    
+        if(armState == 3){
+        if(armSystem.getPotVoltage() >= 4.9){
+            System.out.println("backCubePickupButtonShouldStop");
+            backCubePickupButtonLatch = false;
+            buttonActive = false;
+            armState = 0;
+            backCubePickupCounter = 0;
+            armSystem.armStop();
+}
+        }
+    }//backCubePickup Latch
+
+   
     
       if(Robot.oi.controller.getPOV() == 0){
           Robot.armSystem.armForward();
