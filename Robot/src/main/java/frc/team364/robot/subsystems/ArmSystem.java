@@ -51,7 +51,7 @@ public class ArmSystem extends Subsystem {
      */
     public ArmSystem() {
         arm = new TalonSRX(RobotMap.arm);
-        pidArm = new PIDCalc(100, 0, 0, 0, "Arm");
+        pidArm = new PIDCalc(200, 0, 0, 0, "Arm");
         pidMoveArm = new PIDCalc(0.1, 0, 0, 0.5, "moveArm");
         pot = new AnalogInput(0);
     }
