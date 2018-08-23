@@ -20,7 +20,7 @@ public class RightSwitch extends CommandGroup {
         //addSequential(new moveArmToSwitchPosition()); uncomment this once this line of code is determined to work
         addSequential(new DriveStraightForCounts(1500, false, false));//1
         addSequential(new TurnToHeading(15));//2
-        addSequential(new DriveStraightForCounts(5000, false, false));//3
+        addSequential(new DriveStraightForCounts(4000, false, false));//3
         addSequential(new TurnToHeading(-15));//4
         addSequential(new DriveStraightForCountsQuick(1700, false, false));//6
         addSequential(new OuttakeCube());
