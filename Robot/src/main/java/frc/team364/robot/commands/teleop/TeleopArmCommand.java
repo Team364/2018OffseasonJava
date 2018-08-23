@@ -23,6 +23,7 @@ public class TeleopArmCommand extends Command {
          */
     private int armState;
     private boolean buttonActive;
+    private boolean halfway;
     private boolean switchButtonLatch;
     private boolean vaultButtonLatch;
     private boolean backCubePickupButtonLatch;
@@ -42,6 +43,12 @@ public class TeleopArmCommand extends Command {
 
     @Override
     protected void execute() {
+        System.out.println("Halfway: " + halfway);
+        if(armSystem.getPotVoltage() <= 3.2){
+            halfway = false;
+        }else if(armSystem.getPotVoltage() > 3.2){
+            halfway = true;
+        }
         if(Robot.oi.resetButton.get()){
             armState = 0;
             switchButtonLatch = false;
@@ -82,7 +89,7 @@ public class TeleopArmCommand extends Command {
                         armSystem.armStop();
                     }
                 }
-            
+            if(!halfway){
                 if(armState == 1){
                 if(armSystem.getPotVoltage() >= 3){
                     System.out.println("switchButtonShouldStop");
@@ -93,6 +100,19 @@ public class TeleopArmCommand extends Command {
                     armSystem.armStop();
     }
 }
+            }
+            if(halfway){
+                if(armState == 1){
+                if(armSystem.getPotVoltage() <= 4){
+                    System.out.println("switchButtonShouldStop");
+                    switchButtonLatch = false;
+                    buttonActive = false;
+                    armState = 0;
+                    switchCounter = 0;
+                    armSystem.armStop();
+}
+}
+            }
             }//Switch Latch
     if(Robot.oi.vaultButton.get()){
         armState = 2;

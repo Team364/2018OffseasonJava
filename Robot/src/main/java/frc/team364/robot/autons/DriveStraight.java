@@ -13,7 +13,7 @@ public class DriveStraight extends CommandGroup {
      */
     public DriveStraight() {
        
-        addSequential(new DriveStraightForCounts(7000, false, true)); //1
+        addSequential(new DriveStraightForCounts(8000, false, true)); //1
         addSequential(new StopDriveMotors());
     
     }

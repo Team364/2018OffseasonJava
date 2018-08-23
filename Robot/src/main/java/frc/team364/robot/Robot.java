@@ -93,9 +93,9 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().removeAll();
 	    gameData = DriverStation.getInstance().getGameSpecificMessage();
             if(gameData.charAt(0) == 'L') {
-                LeftSwitch.start();//DriveStraight.start()
+                DriveStraight.start();//DriveStraight.start()
             } else {
-                RightSwitch.start();//DriveStraight.start()
+                DriveStraight.start();//DriveStraight.start()
             }
         driveSystem.resetHeading();
         driveSystem.resetEncoders();
